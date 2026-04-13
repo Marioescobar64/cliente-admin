@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { LoginForm } from "../components/LoginForm";
 import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
- 
+
 export const AuthPage = () => {
-  const [isForgot, setIsForgot] = useState(true); // Pantalla Olvidé mi contraseña
- 
+  const [isForgot, setIsForgot] = useState(false); // Pantalla Olvidé mi contraseña
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-     
+      
       {/* Tarjeta del formulario */}
       <div className="w-full max-w-xl bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-10">
-       
+        
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <img
@@ -19,13 +19,13 @@ export const AuthPage = () => {
             className="h-20 w-auto"
           />
         </div>
- 
+
         {/* Título y subtítulo */}
         <div className="text-center mb-6">
           <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
             {isForgot ? "Recuperar Contraseña" : "Bienvenido de Nuevo"}
           </h1>
- 
+
           <p className="text-gray-600 text-base max-w-md mx-auto">
             {isForgot
               ? "Ingresa tu correo para recuperar tu contraseña"
@@ -35,9 +35,9 @@ export const AuthPage = () => {
         {isForgot ? (
           <ForgotPasswordForm onSwitch={() => setIsForgot(false)} />
         ) : (
-          <LoginForm />
+          <LoginForm onForgot={() => setIsForgot(true)} />
         )}  
- 
+
       </div>
     </div>
   );

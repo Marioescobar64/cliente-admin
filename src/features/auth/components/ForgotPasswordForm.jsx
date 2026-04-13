@@ -1,10 +1,13 @@
-export const ForgotPasswordForm = ({onSwitch}) => {
+export const ForgotPasswordForm = ({ onSwitch }) => {
   return (
     <form className="space-y-5">
+      
+      {/* Campo Email */}
       <div>
         <label className="block text-sm font-medium text-gray-800 mb-1.5">
           Email
         </label>
+
         <input
           type="email"
           placeholder="correo@ejemplo.com"
@@ -12,13 +15,15 @@ export const ForgotPasswordForm = ({onSwitch}) => {
         />
       </div>
 
+      {/* Botón submit */}
       <button
         type="submit"
-        className="w-full bg-main-blue text-white py-2.5 px-4 rounded-lg text-sm font-medium"
+        className="w-full bg-main-blue text-white py-2.5 px-4 rounded-lg text-sm font-medium hover:opacity-90 transition"
       >
         Enviar correo
       </button>
 
+      {/* Volver a login */}
       <p className="text-center text-sm text-gray-600">
         ¿Recordaste tu contraseña?{" "}
         <button
@@ -29,6 +34,7 @@ export const ForgotPasswordForm = ({onSwitch}) => {
           Iniciar sesión
         </button>
       </p>
+
     </form>
   );
 };
