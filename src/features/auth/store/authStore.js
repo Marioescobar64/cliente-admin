@@ -1,11 +1,12 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { login as loginRequest } from '../../../shared/api';
-import  toast  from "react-hot-toast";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import toast from "react-hot-toast";
+ 
+import { login as loginRequest } from "../../../shared/api";
  
 export const useAuthStore = create(
     persist(
-        (set, get)=>({
+        (set, get) => ({
             user: null,
             token: null,
             refreshToken: null,
@@ -15,25 +16,25 @@ export const useAuthStore = create(
             isLoadingAuth: true,
             isAuthenticated: false,
  
-            checkAuth: ()=> {
+            checkAuth: () => {
                 const token = get().token;
                 const role = get().user?.role;
-                const isAdmin = role === "ADMIN_ROLE"
+                const isAdmin = role === "ADMIN_ROLE";
  
-                if(token && !isAdmin) {
+                if (token && !isAdmin) {
                     set({
                         user: null,
-                        token:null,
+                        token: null,
                         refreshToken: null,
                         expiresAt: null,
                         isAuthenticated: false,
                         isLoadingAuth: false,
-                        error: "No tienes permiso para acceder como administrador"
+                        error: "No autorizado para acceder al panel de administración"
                     })
                 }
             },
  
-            logout: ()=>{
+            logout: () => {
                 set({
                     user: null,
                     token: null,
@@ -43,39 +44,36 @@ export const useAuthStore = create(
                 })
             },
  
-            login: async (emailOrUsername, password)=>{
+            login: async ({ emailOrUsername, password }) => {
+                const { data } = await loginRequest({ emailOrUsername, password })
  
-                const { data } = await loginRequest({emailOrUsername, password})
- 
-                // Solo Administradores pueden iniciar sesion en cliente-admin
+                // solo administradores puede iniciar sesion en client-admin
                 const role = data?.userDetails?.role;
-                if(role !== "ADMIN_ROLE"){
-                    const message = "No tiene permisos para acceder como administrador";
+                if (role !== "ADMIN_ROLE") {
+                    const message = "No autorizado para acceder al panel de administración";
                     set({
                         user: null,
-                        token:null,
+                        token: null,
                         refreshToken: null,
                         expiresAt: null,
                         isAuthenticated: false,
-                        loading: false,
+                        isLoadingAuth: false,
                         error: message,
                     });
-                    showError(message);
-                    return {succes: false, error: message};
-
+                    toast.error(message);
+                    return { success: false, error: message };
                 }
-
                 set({
-                        user: data.userDetails,
-                        token: data.accessToken || data.token,
-                        refreshToken: data.refreshToken,
-                        expiresAt: data.expiresIn || data.expiresAt,
-                        isAuthenticated: true,
-                        loading: false,
-                })
-
+                    user: data.userDetails,
+                    token: data.accessToken || data.token,
+                    refreshToken: data.refreshToken,
+                    expiresAt: data.expiresIn || data.expiresAt,
+                    isAuthenticated: true,
+                    error: null,
+                    isLoadingAuth: false,
+                });
+                return { success: true }
             },
         }),
-        {name: "auth-store"}
-    )
+        { name: "auth-store" })
 );
