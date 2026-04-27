@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 export const Sidebar = () => {
     const items = [
-        { label: "Canchas" },
-        { label: "Reservaciones" },
-        { label: "Equipos" },
-        { label: "Torneos" },
-        { label: "Usuarios" },
+        { label: "Canchas", to: "/dashboard/fields" },
+        { label: "Reservaciones", to: "/dashboard/reservations" },
+        { label: "Equipos", to: "/dashboard/teams" },
+        { label: "Torneos", to: "/dashboard/tournaments" },
+        { label: "Usuarios", to: "/dashboard/users" },
     ];
 
     return (
@@ -12,9 +14,9 @@ export const Sidebar = () => {
             <ul className="space-y-1">
                 {items.map((item) => (
                     <li key={item.label}>
-                        <div className="block px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors">
+                        <Link to={item.to} className="block px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors">
                             {item.label}
-                        </div>
+                        </Link>
                     </li>
                 ))}
             </ul>
