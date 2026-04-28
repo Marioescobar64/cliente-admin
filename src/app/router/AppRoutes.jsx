@@ -17,11 +17,6 @@ export const AppRoutes = ()=> {
 
 
             {/* PROTECTED + ROLE */}
-<<<<<<< Updated upstream
-      <Route path="/dashboard/*" element={<DashboardPage />}>
-        <Route path="users" element={<Users/>} />
-      </Route>
-=======
             <Route path="/dashboard/*" element={<DashboardPage/>}>
                 <Route path="users" element={<Users/>} />
                 <Route path="fields" element={<Fields/>} />
@@ -29,7 +24,6 @@ export const AppRoutes = ()=> {
                 <Route path="teams" element={<Teams/>} />
                 <Route path="tournaments" element={<Tournaments/>} />
             </Route>
->>>>>>> Stashed changes
 
 
             {/* Ruta temporal para pruebas */}

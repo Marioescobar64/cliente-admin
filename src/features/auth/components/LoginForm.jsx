@@ -19,20 +19,10 @@ export const LoginForm = ({ onForgot }) => {
  
     const onSumnit = async (data) => {
         const res = await login(data);
-<<<<<<< Updated upstream
-        console.log(res);
         if (res.success) {
             navigate("/dashboard");
             toast.success("Bienvenido de nuevo 🚀");
-        } else {
-            toast.error(res.message || "Error al iniciar sesión");
-=======
-        if (res.success) {
-            navigate("/dashboard");
-            toast.success("Bienvenido de nuevo 🚀");
->>>>>>> Stashed changes
         }
-
     };
  
     return (
