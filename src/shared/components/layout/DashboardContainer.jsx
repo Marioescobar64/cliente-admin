@@ -1,5 +1,6 @@
 import { Navbar } from "./Navbar";
 import { Sidebar } from "./Sidebar";
+<<<<<<< Updated upstream
 
 // VISTAS
 
@@ -41,18 +42,20 @@ import { Sidebar } from "./Sidebar";
 //import { Users } from "../../../features/users/components/Users";
 
 
+=======
+import { Outlet } from "react-router-dom";
+>>>>>>> Stashed changes
 
 export const DashboardContainer = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Navbar */}
       <Navbar/ > 
 
       <div className="flex flex-1">
-        {/* Sidebar */}
         <Sidebar />
         
         <main className="flex-1 p-6">
+<<<<<<< Updated upstream
           {/* <Spinner/> */}
           {/* <ResetPasswordForm /> */}
           {/* <ShowConfirmToast /> */}
@@ -81,6 +84,9 @@ export const DashboardContainer = () => {
           {/* <UserDetailModal /> */}
           {/* <Users /> */}
 
+=======
+          <Outlet />
+>>>>>>> Stashed changes
         </main>
       </div>
 

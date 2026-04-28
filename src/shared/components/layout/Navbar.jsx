@@ -1,5 +1,9 @@
 import imgLogo from "../../../assets/img/kinal_sports.png";
+<<<<<<< Updated upstream
 import { AvatarUser } from "../ui/AvatarUser";
+=======
+import { AvatarUser } from "../../ui/AvatarUser";
+>>>>>>> Stashed changes
 
 export const Navbar = () => {
     return (
